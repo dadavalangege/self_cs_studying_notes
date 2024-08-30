@@ -66,3 +66,36 @@ we pull the values down (add a -15 bias) and go to this:
 We are here using positives as 1s and negatives as 0s. We also have positive up to 16 and negative up to -15. In this case we used a -15 bias as the bias formula is represented as **-(2^N-1 - 1)**. Having 5 bits it's then -(2^5-1 - 1) = -15.
 
 Interesting fact is that it is the **same hardware** for **unsigned** and **Two's Complement**.
+
+
+# 2. C Intro - Basics
+
+## Compile vs interpret
+
+Compilation and interpretation are the two main ways that a program gets run by a computer. 
+
+- **C** is a **compiled** language, which means that the entire program is converted into a machine-specific executable before it can be run.
+- **Java**, on the other hand, is an **interpreted** language. Java programs are first compiled into a **platform-independent bytecode**, which can then be run on any machine that has a **Java Virtual Machine (JVM)**.
+
+Advantages and disadvantages of both compilation and interpretation. _Compiled_ languages are generally **faster** and more **efficient** than interpreted languages, but they can be **more difficult to debug** and they can be **machine-specific** (**Compiled and Executable files need to be rebuilt on each new system**). Interpreted languages are **easier to debug**, but they can be **slower** and **less efficient**.
+
+- **Two-step process of compilation** in C: first, the .c file/program is compiled into **object files** (.o files), and then these object files are **linked** together with **libraries** to form the executable (**Assembling** is done automatically, hidden). **Makefiles** can help you to only recompile the files that you have changed, which can save you a lot of time. Thanks to this, you only need to compile the file with the new changes, and not all of them again.
+
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/f8620c84-1d27-460b-8d09-0154e5cf477e">
+
+Why do people do scientific computation in Python? 
+- Python has very good libraries for accessing GPU-specific resources.
+- Python allows to drive multiple machines very easily (Spark)
+- Python can also call low-level C code to do work (**Cython**)
+
+
+The **C pre-processor (CPP)**: the C preprocessor is a program that processes your c code **before** it is compiled. It can be used to define macros, include header files, and conditionally compile code. Macros: macros are a way to define a piece of code that can be reused multiple times. Macros can be helpful for making your code more readable and maintainable, but they can also be **difficult to debug and lead to errors because macros are simply text-substituting, not variable assignment like in Python or other languages**.
+
+Here is an example of a C preprocessor macro:
+
+      #define PI 3.14159
+      
+This macro defines the value of PI to be 3.14159. You can then use the macro in your C code like this:
+
+      area = PI * radius * radius;
+    
