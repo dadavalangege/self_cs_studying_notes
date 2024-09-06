@@ -181,8 +181,7 @@ Memory could be thought as a very big array that starts at 0 and continues up to
 - & is called the “address operator” in this context.
 
       z = *p;
-- Tells the compiler to assign the value at the address in p to z.
-- * is called the “dereference operator” in this context.
+- Tells the compiler to assign the value at the address in p to z. * is called the “dereference operator” in this context.
  
 <img width="438" alt="image" src="https://github.com/user-attachments/assets/9e5620ed-21fa-4f7c-8f5c-af556d615449">
 
