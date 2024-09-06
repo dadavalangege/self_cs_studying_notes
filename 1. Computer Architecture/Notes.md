@@ -160,7 +160,7 @@ Everything else is true.
 - better to add brackets in if statements to avoid identation confusion
 - add breaks after each case in switch statements
 
-## C Intro: Pointers, Arrays, Strings: Pointers and Bugs
+## Pointers, Arrays, Strings: Pointers and Bugs
 
 - A variable may be initialized in its declaration. If not, we need to remember to initialize it afterwards, otherwise it will hold garbage inside (undefined content).
 - A lot of C has **undefined behaviour**: **Heisenbugs** (bugs that are random/hard to reproduce, and seem to disappear or change when debugging). Bohrbugs are the opposite, they are reproducible.
