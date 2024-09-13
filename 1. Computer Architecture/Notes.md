@@ -225,3 +225,23 @@ The correct way of incrementing y value is using pointers:
 in this code we are telling the program to assign the value 5 at _any_ address because the pointer was declared without initialization (it holds garbage, points to any direction), and we lose control of memory allocation.
 
 **Why pointers?**: in spite of being a big source of bugs, pointers allow us to pass (to someone or something) a large data structure as a pointer instead of having to copy the whole data structure. It is faster and more efficient.
+
+## Arrays
+
+Arrays are contiguous set of variables in memory. You can't increment an array (but you can increment a pointer). ar[0] = *ar and ar[2] = *(ar=2). Arrays are only allocated while the scope is valid. The style of C is there is only one source of truth: if you want to have one hard-coded value just have it once. This is called **indirection**. An array does not know its own length, and boundaries are not checked. The consequences are that
+
+- We can accidentaly access off the end of an array
+- We must pass the array and its size to a procedure which is going to traverse it
+- The only exception are strings because array 0 is the end of it. But the rest we need to pass the size.
+
+**Segmentation error**: you are reading and writing in memory you don't have access to. **bus errors**: your alignment is wrong (the address is not correct). 
+
+**Pointer arithmetic**: this is used to move the pointer with arithmetic (+1 = "move one to the right", or -1 also). 
+
+If we want to move the pointer of an array, we need a **pointer to a pointer** (also called handle), which is declared with two stars **.
+<img width="475" alt="image" src="https://github.com/user-attachments/assets/2fb5e983-dec9-462c-a634-a784b2c5b75c">
+
+
+
+
+
