@@ -241,7 +241,76 @@ Arrays are contiguous set of variables in memory. You can't increment an array (
 If we want to move the pointer of an array, we need a **pointer to a pointer** (also called handle), which is declared with two stars **.
 <img width="475" alt="image" src="https://github.com/user-attachments/assets/2fb5e983-dec9-462c-a634-a784b2c5b75c">
 
+## Function pointer example
+
+      #include <stdio.h>
+
+      int x10(int), x2(int);
+      void mutate_map(int [], int n, int(*) (int));
+      void print_array(int [], int n);
+      
+      int x2 (int n) {   return 2*n;   }
+      int x10(int n) {   return 10*n;  }
+      
+      void mutate_map(int A[], int n, int(*fp) (int)) {
+          for (int i = 0; i < n; i++)
+              A[i] = (*fp)(A[i]);
+      }
+      
+      void print_array(int A[], int n) {
+          for (int i = 0; i < n; i++)
+              printf("%d ",A[i]);
+          printf("\n");
+      }
+      
+      int main(void)
+      {
+          int A[] = {3,1,4}, n = 3;
+          print_array(A, n);
+          mutate_map (A, n, &x2);
+          print_array(A, n);
+          mutate_map (A, n, &x10);
+          print_array(A, n);
+      }
+
+Output:
+
+      % ./map
+      3 1 4
+      6 2 8
+      60 20 80
+
+**Explanation of mutate_map function pointer**:
+
+1. Function pointer declaration:
+
+      void mutate_map(int A[], int n, int(*fp) (int));
+
+Here, `int(*fp) (int)` declares a function pointer named `fp`. This pointer can point to any function that takes an int as input and returns an int.
+
+2. Function pointer usage in `mutate_map`:
+
+      void mutate_map(int A[], int n, int(*fp) (int)) {
+            for (int i = 0; i < n; i++)
+                  A[i] = (*fp)(A[i]);
+      }
 
 
+   Let's break this down further:
+
+   a. `(*fp)` **dereferences** the function pointer, giving us the **function it points to**.
+   
+   b. `(*fp)(A[i])` calls the pointed-to function with `A[i]` as its argument.
+   
+   c. The result of this function call is then assigned back to `A[i]`, effectively modifying the array element.
+
+3. In the `main` function, `mutate_map` is called twice:
+
+      mutate_map (A, n, &x2);
+      mutate_map (A, n, &x10);
+
+   a. In the first call, `&x2` is passed. This is the address of the `x2` function, which becomes the value of `fp` inside `mutate_map`.
+   
+   b. In the second call, `&x10` is passed, so `fp` points to the `x10` function.
 
 
